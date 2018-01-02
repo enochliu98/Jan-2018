@@ -15,13 +15,15 @@
 **********************************/
 
 
-
+#include<iostream>
 #include<stdlib.h>  
 #include<stdio.h>  
 #include<math.h>  
 #include<string.h>  
-#include <graphics.h>      // 就是需要引用这个图形库
-#include <conio.h>
+#include<graphics.h>      // 就是需要引用这个图形库
+#include<conio.h>
+#include<windows.h>
+
 
 #define WINSIZEX 401	//窗口大小
 #define WINSIZEY 471
@@ -32,7 +34,7 @@
 #define TRUE 1
 
 #pragma warning(disable:4996) 
-
+using namespace std;
 
 typedef struct {
 	char Str[MAX];/*存储原算术表达式*/
@@ -100,29 +102,47 @@ void Trans(STR *InStr , char LastStr[])
 	int LastStrPos = 1, StackTop = 0;	//StackTop用于表示栈顶，这个栈没有采用课本上的那种，而是直接把栈顶指向元素 
 
 	while (ChStr != '#'){//#代表算术表达式的结束标志
-		switch (ChStr){
+
+		cout<<"--------------------------------------------------------------------"<<endl;
+		cout<<"符号栈为:  ";
+		for(int j=1;j<=StackTop;j++)
+			cout<<Stack[j];
+		cout<<"              后缀表达式为:  ";
+		for(int k=1;k<LastStrPos;k++)
+			cout<<LastStr[k];
+
+		cout<<"       ";
+
+
+	switch (ChStr){
 		case'(':		/*判定为左括号*/
 			StackTop++; 
 			Stack[StackTop] = ChStr;
+
+			cout<<"操作： push（符号栈)   ";
 			break;
 
 		case')':		//判定为右括号，则取出遇到左括号之前的所有字符 
 			while (Stack[StackTop] != '('){
 				LastStr[LastStrPos] = Stack[StackTop]; 
 				StackTop--; 
+				cout<<"操作： pop（符号栈)   ";
 				LastStrPos++;
 			}
 			StackTop--;		//扔掉（
+			cout<<"操作： pop（符号栈)   ";
 			break;
 		case'+':		//判定为加减号，若遇见栈顶比它小或左括号则入栈，否则就将栈顶出栈 
 		case'-':
 			while (StackTop != 0 && Stack[StackTop] != '('){
 				LastStr[LastStrPos] = Stack[StackTop];
 				StackTop--;
+				cout<<"操作： pop (符号栈）    ";
 				LastStrPos++;
 			}
 			StackTop++;			//保留（
 			Stack[StackTop] = ChStr;
+			cout<<"操作： push（符号栈)   ";
 			break;
 
 		case'*':		/*判定为乘除号*/
@@ -130,10 +150,12 @@ void Trans(STR *InStr , char LastStr[])
 			while (Stack[StackTop] == '*' || Stack[StackTop] == '/'){
 				LastStr[LastStrPos] = Stack[StackTop];		//如果栈顶是*或者/弹出，放到后缀数组里
 				StackTop--;
+				cout<<"操作： pop（符号栈)   ";
 				LastStrPos++;
 			}
 			StackTop++;
 			Stack[StackTop] = ChStr;
+			cout<<"操作： push（符号栈)   ";
 			break;
 
 		case' ':break;		//忽略空格
@@ -150,12 +172,39 @@ void Trans(STR *InStr , char LastStr[])
 			LastStrPos++;
 		}
 		ChStr = InStr->Str[i]; i++;
+
+		cout<<endl;
 	}
 	while (StackTop != 0){
+
+		cout<<"--------------------------------------------------------------------"<<endl;
+		cout<<"符号栈为:  ";
+		for(int j=1;j<=StackTop;j++)
+			cout<<Stack[j];
+		cout<<"              后缀表达式为:  ";
+		for(int k=1;k<LastStrPos;k++)
+			cout<<LastStr[k];
+		cout<<"       ";
+
+
 		LastStr[LastStrPos] = Stack[StackTop];
 		LastStrPos++; 
 		StackTop--;
+		cout<<"操作： pop（符号栈)   ";
+		cout<<endl;
+
 	}
+
+	cout<<"--------------------------------------------------------------------"<<endl;
+	cout<<"符号栈为:  ";
+	for(int j=1;j<=StackTop;j++)
+		cout<<Stack[j];
+	cout<<"              后缀表达式为:  ";
+	for(int k=1;k<LastStrPos;k++)
+		cout<<LastStr[k];
+	cout<<"       ";
+	cout<<endl;
+
 	LastStr[LastStrPos] = ' ';
 	LastStrPosT = LastStrPos;
 }
@@ -171,18 +220,28 @@ float Compvalue(char LastStrTemp[]){	/*计算后缀表达式的值*/
 	LastStrPos++;
 
 	while (ChStr != ' '){
+
+		cout<<"--------------------------------------------------------------------"<<endl;
+		cout<<"数字栈为:  ";
+		for(int j=1;j<=StackTop;j++)
+		cout<<Stack[j]<<" ";
+		
+
 		switch (ChStr){
 		case'+':
 			Stack[StackTop - 1] = Stack[StackTop - 1] + Stack[StackTop];
 			StackTop--;
+			cout<<"          操作：pop（数字栈)   pop（数字栈)   operate('+')   push(数字栈）";
 			break;
 		case'-':
 			Stack[StackTop - 1] = Stack[StackTop - 1] - Stack[StackTop];
 			StackTop--;
+			cout<<"          操作：pop（数字栈)   pop（数字栈)   operate('-')    push(数字栈）";
 			break;
 		case'*':
 			Stack[StackTop - 1] = Stack[StackTop - 1] * Stack[StackTop];
 			StackTop--;
+			cout<<"          操作：pop（数字栈)   pop（数字栈)   operate('*')    push(数字栈）";
 			break;
 		case'/':
 			if (Stack[StackTop] != 0)
@@ -191,6 +250,7 @@ float Compvalue(char LastStrTemp[]){	/*计算后缀表达式的值*/
 				exit(0);/*异常退出*/
 			}
 			StackTop--;
+			cout<<"          操作：pop（数字栈)   pop（数字栈)   operate('/')    push(数字栈）";
 			break;
 		default:
 			float a=0.1;
@@ -212,13 +272,27 @@ float Compvalue(char LastStrTemp[]){	/*计算后缀表达式的值*/
 				LastStrPos++;
 			}
 			StackTop++;
+			cout<<"     操作： push（数字栈)   ";
 			Stack[StackTop] = NumStr;
+
+
+		
 		}
+		cout<<endl;
 		ChStr = LastStrTemp[LastStrPos];
 		LastStrPos++;
 	}
+
+
+	cout<<"--------------------------------------------------------------------"<<endl;
+	cout<<"数字栈为:  ";
+	for(int j=1;j<=StackTop;j++)
+	cout<<Stack[j]<<" ";
+	cout<<endl;
+
 	return Stack[StackTop];
 }
+
 
 void GiveStr(char GetString[] , char *TheStr) {
 	STR InStr;
@@ -268,10 +342,30 @@ void GiveStr(char GetString[] , char *TheStr) {
 		InStr.Long++;
 		InStr.Str[InStr.Long] = GetString[i];
 	}
+
+	cout<<"************************************************************************"<<endl;
+	cout<<"************************************************************************"<<endl;
+	cout<<"***********                 计算器后台系统                  ************"<<endl;
+	cout<<"************************************************************************"<<endl;
+	cout<<"************************************************************************"<<endl;
+	cout<<"算术表达式为：  ";
+	for(i=1;i<=InStr.Long;i++)
+		cout<<InStr.Str[i];
+	
+	cout<<endl;
+
+
 	InStr.Long++;
 	InStr.Str[InStr.Long] = '#';
-	Trans(&InStr, LastStr);
 
+
+	cout<<"将算术表达式转化为后缀表达式"<<endl;
+	Trans(&InStr, LastStr);
+	
+	cout<<endl;
+	cout<<endl;
+	
+	cout<<"计算后缀表达式"<<endl;
 	LastV = Compvalue(LastStr);
 	LastV == (int)LastV ? sprintf(TheStr , "%.0f" , LastV) : sprintf(TheStr, "%.4f", LastV);
 }
@@ -495,8 +589,10 @@ void DrawWindow() {
 
 int main()
 {
-	initgraph(WINSIZEX, WINSIZEY);   // 创建一个500*600的窗口
+	
+	initgraph(WINSIZEX, WINSIZEY,SHOWCONSOLE);   // 创建一个500*600的窗口
 
+	
 	DrawWindow();
 	DrawTe();
 	InitPos();
