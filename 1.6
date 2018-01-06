@@ -28,3 +28,38 @@ Beautiful Soup是python的一个库，最主要的功能是从网页抓取数据
 numpy有许多进行矩阵运算的好用的函数
 Series形式是一个一维索引dict
 DataFrame类似于一个二维的索引表格
+
+
+
+3.TFRecord
+主要用于大数据
+
+
+4.TensorFlow API（sentdex)
+API是一个接口，可以让不用自己去构建神经网络
+
+5.fine-tuning
+
+自己的训练集比较小，用别的神经网络的架构和参数并进行微调
+有一个训练好的网络，copy是指固定前面的几层，对剩余的其他的进行训练。只训练比较小的一部分。
+
+6.用一张普通的网络生成一个TF数剧notmnist
+
+7.tf.train.shuffle_batch
+比如batch_size=5,capacity=10,min_after_dequeue=5,
+初始是有序的0,1，..,9(10条记录)，
+然后打乱8,2,6,4,3,7,9,2,0,1(10条记录),
+队尾取出5条，剩下7,9,2,0,1(5条记录),
+然后又按顺序补充进来，变成7,9,2,0,1,10,11,12,13,14(10条记录)，
+再打乱13,10,2,7,0,12...1(10条记录)，
+再出队...
+
+8.tf.Variable_scope 
+  tf.name_scope
+ 
+ tf.Variable()都是全新的
+ tf.get_variable()可以检查已经存在的变量，如果不存在则再新建一个Tensor如果有j就会继续复用
+ 不用第二次生成他。但是如果但是如果重复使用它时会报错，不允许重复创建，与Variable不同，Variable是可以的
+ 但get不受name_scope的影响
+ 
+
