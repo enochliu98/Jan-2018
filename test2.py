@@ -1,25 +1,27 @@
-# -*- coding:utf-8 -*-
-import urllib
-import urllib2
-import re
+def triangles():
+    a = [1]
+    yield a
+    a=[1,1]
+    yield a
+    for i in range(3, 11):
+        b = [1]
+        for j in range(2, i):
+            x = a[j - 2] + a[j-1]
+            b.append(x)
+        b.append(1)
+        yield b
+        a = b
 
-page = 1
-url = 'http://www.qiushibaike.com/hot/page/' + str(page)
-user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
-headers = { 'User-Agent' : user_agent }
-try:
-    request = urllib2.Request(url,headers = headers)
-    response = urllib2.urlopen(request)
-    content = response.read().decode('utf-8')
-    pattern = re.compile('&lt;div.*?author"&gt;.*?&lt;a.*?&lt;img.*?&gt;(.*?)&lt;/a&gt;.*?&lt;div.*?'+
-                         'content"&gt;(.*?)&lt;!--(.*?)--&gt;.*?&lt;/div&gt;(.*?)&lt;div class="stats.*?class="number"&gt;(.*?)&lt;/i&gt;',re.S)
-    items = re.findall(pattern,content)
-    for item in items:
-        haveImg = re.search("img",item[3])
-        if not haveImg:
-            print item[0],item[1],item[2],item[4]
-except urllib2.URLError, e:
-    if hasattr(e,"code"):
-        print e.code
-    if hasattr(e,"reason"):
-        print e.reason
+
+
+n = 0
+results = []
+for t in triangles():
+    print(t)
+    results.append(t)
+    n = n + 1
+    if n == 10:
+        break
+
+
+
