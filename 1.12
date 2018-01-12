@@ -1,0 +1,47 @@
+1.python
+1.1 list里面的数据元素可以不同类型
+list就相当于一个顺序表
+1.2 list和dict的区别
+dict的查找和插入的速度很快，不会因为key的增加而变慢
+dict需要占用大量内存
+dict与map差不多
+做key的对象是不能变得，在python中字符串和整数都是不能变得
+用pop对元素进行删除操作
+set跟dict类似但是他不存储value
+构建的时候需要传入一个list
+用add和remove进行删除，可以进行交并补操作
+实现了generator的操作
+1.3多进程
+unix和linux系统提供了一个fork系统调用，调用一次，返回两次
+操作系统自动把当前进程赋值一份，然后分别在父进程和子进程返回
+子进程返回的是0，而父进程返回的是子进程的id
+子进程可以用getppid来返回父进程的id
+1.4多线程是加速程序计算的有效方法，python的多线程模块为threading
+threading的基本操作包括获取线程数和添加线程等等
+获取已经激活的线程数
+threading.active_count()
+查看所有的线程信息
+threading.enumerate()
+threading。Thread（）接受参数target参数来表示要完成的任务，需要自己定义
+join功能
+可以规范化程序的运行速度
+
+
+2.linux
+在linux系统中，最常用的软件包是RPM和tar和deb
+对于rpm如果直接用rpm命令安装的话会很不方便，会产生很多的依赖
+yum就可以是这个过程自动化
+yum install
+yum remove
+yum update
+对于apt-get
+apt-get install
+apt-get remove
+apt-get update
+
+
+3.汇编语言
+DATA STACK CODE三段
+
+
+
