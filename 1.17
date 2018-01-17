@@ -1,0 +1,81 @@
+1.git
+git的commit回复（版本回复）用git reset
+在工作去暂存区的撤销用 git checkout
+git的远程库操作是用
+git clone进行克隆远程库
+第一次用
+git push -u orgin master
+以后就可以直接
+git push orgin master
+使用
+git log可以查看提交的历史
+用
+git reflog可以查看历史信息
+git checkout --
+使用版本库里面的最新版本来替换工作区的版本
+
+
+
+2.SQL
+2.1
+SQL不区分大小写
+
+2.2
+主要操作
+SELECT 列名 FROM  表
+可以选多列
+SELECT * FROM 表
+插入一整行
+INSERT INTO 表 VALUE（）
+也可以插入部分数据
+INSERT INTO 表（） VALUE（）
+WHERE是进行行选择
+更新
+UPDATE 表 SET 列名称= WHERE 列名称= 
+删除
+DELETE FROM 表 WHERE
+
+2.3
+目前最广泛的是关系数据库系统，比如SQL Server,Oracle,DB2等
+关系数据库系统是通过SQL对数据库进行查询和更新的
+
+
+
+3.python
+3.1
+如果使用了asc以外的字符
+需要加上一句说明
+3.2
+当一个整数超过l范围的时候自动进行转化
+
+
+4.numpy
+4.1
+numpy经常简写为np
+是一种矩阵的运算，有时候可能是一维，有时候可能是二维
+array=np.array([[1,2,3][4,5,6]])
+np.ndim 维数
+np.shape 行数列数
+np.size 元素个数
+numpy可以用dtype设置数据类型
+np.zeros(())
+()里面传递的是shape
+4.2
+numpy运算
+>3
+sin
+**2
+等运算都是对矩阵中的元素进行运算
+*是逐个相乘，而dot运算乘
+4.3
+median是中位数
+cumsum是一个累加
+
+
+5.matplot
+使用plt.figure定义一个图像窗口
+plt.figure(num=3,figsize=(8,5))
+plt.plot(x,y2)
+使用它来画曲线
+
+
