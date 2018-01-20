@@ -1,0 +1,20 @@
+1.git
+1.1
+git的HEAD指针指向哪里就代表当前位于哪个分支
+git checkout -b dev 创建dev分支，并切换到dev分支
+相当于下面两个命令 git branch dev      git checkout dev
+git branch 可以查看当前的分支
+git merge dev  把dev分支合并到当前分支上
+git branch -d dev是删除dev分支
+--no-diff用于合并分支可以保留原有的历史
+
+2.linux
+2.1
+sudo passwd root是切换到root权限
+
+
+3.numpy
+numpy只是把原来的list转化成矩阵形式
+np.concatenate((a,b,c))
+是将矩阵进行合并默认为列合并
+理解concatenate用axis=0默认
