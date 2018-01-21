@@ -1,4 +1,5 @@
 
+
 1.windows操作
 win+g屏幕录制
 win+x打开开始那个
@@ -34,3 +35,7 @@ urllib工具可以用来实现爬虫
 另一种方法是万能的request
 的get和post方法
 也可以用session和cookie
+
+5.bleu
+精度，召回率
+机器翻译
