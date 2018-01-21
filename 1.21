@@ -1,0 +1,36 @@
+
+1.windows操作
+win+g屏幕录制
+win+x打开开始那个
+win+r打开运行
+shift+左右可以快速选择
+win+tab可以切换应用程序
+win+d显示桌面
+ctrl+shift+esc是任务管理器
+win+print截屏
+win+w ink工作区
+ctrl+win+c不一样世界
+F11
+shift+win+回车 全屏
+win+shift+s 截图
+
+2.其他
+寻找到了一个remote desktop软件
+可以实现投屏操作
+
+3.linux
+ctrl+q
+ctrl+d相当于终止输入
+uname显示计算机和操作系统的相关信息
+hostname显示或修改计算机主机名
+free显示内存信息
+du显示目录和磁盘使用量
+cal date显示时间
+
+
+4.爬虫
+urllib工具可以用来实现爬虫
+也就是用urlopen操作
+另一种方法是万能的request
+的get和post方法
+也可以用session和cookie
